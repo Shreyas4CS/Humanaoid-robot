@@ -8,195 +8,227 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --orange:#ff6f00;--orange2:#ffa000;--teal:#00acc1;--teal2:#00838f;
-  --green:#2e7d32;--blue:#1565c0;--purple:#6a1b9a;--red:#b71c1c;
-  --bg:#0a0e1a;--card:#111827;--card2:#1a2235;--border:#1e3a4a;
-  --text:#e0f7fa;--muted:#607d8b;
+  --orange:#f57c00;--orange2:#ff9800;--teal:#0097a7;--teal2:#00838f;
+  --green:#2e7d32;--blue:#1565c0;--purple:#6a1b9a;--red:#c62828;
+  --bg:#f0f4f8;--card:#ffffff;--card2:#e8f4f8;--border:#b2dfdb;
+  --text:#1a2a3a;--muted:#607d8b;
+  --accent1:#e3f2fd;--accent2:#e8f5e9;--accent3:#fff8e1;--accent4:#fce4ec;
 }
 body{font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--text);padding:10px;min-height:100vh;overflow-x:hidden;}
-.scanline{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;
-  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,172,193,0.015) 2px,rgba(0,172,193,0.015) 4px);}
+
+/* Subtle dot pattern bg */
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;
+  background-image:radial-gradient(circle,#b2dfdb 1px,transparent 1px);
+  background-size:28px 28px;opacity:0.35;}
+
 .container{max-width:640px;margin:0 auto;width:100%;position:relative;z-index:1;}
 
 /* Header */
-.header{background:linear-gradient(135deg,#0d1b2a,#1a2a3a);padding:20px 18px 16px;border-radius:16px;margin-bottom:12px;
-  text-align:center;border:1px solid var(--teal);box-shadow:0 0 30px rgba(0,172,193,0.2),inset 0 1px 0 rgba(0,172,193,0.1);}
-.header h1{font-family:'Orbitron',monospace;font-size:22px;font-weight:900;color:var(--teal);
-  letter-spacing:2px;text-shadow:0 0 20px rgba(0,172,193,0.5);margin-bottom:4px;}
-.subtitle{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase;}
-.conn-badge{display:inline-block;margin-top:10px;padding:5px 14px;border-radius:20px;font-size:11px;
-  font-weight:700;background:rgba(255,255,255,0.05);color:var(--muted);border:1px solid var(--border);
-  font-family:'Orbitron',monospace;letter-spacing:1px;}
-.conn-badge.connected{background:rgba(46,125,50,0.2);color:#4caf50;border-color:#4caf50;}
-.conn-badge.error{background:rgba(183,28,28,0.2);color:#ef5350;border-color:#ef5350;}
+.header{background:linear-gradient(135deg,#0097a7,#0288d1);padding:24px 18px 20px;border-radius:20px;margin-bottom:14px;
+  text-align:center;border:none;box-shadow:0 6px 24px rgba(0,151,167,0.25);}
+.header h1{font-family:'Orbitron',monospace;font-size:24px;font-weight:900;color:#ffffff;
+  letter-spacing:3px;margin-bottom:4px;text-shadow:0 2px 8px rgba(0,0,0,0.15);}
+.subtitle{font-size:12px;color:rgba(255,255,255,0.85);font-weight:600;letter-spacing:1px;text-transform:uppercase;}
+.conn-badge{display:inline-block;margin-top:12px;padding:6px 16px;border-radius:20px;font-size:11px;
+  font-weight:700;background:rgba(255,255,255,0.2);color:#ffffff;border:1.5px solid rgba(255,255,255,0.4);
+  font-family:'Orbitron',monospace;letter-spacing:1px;backdrop-filter:blur(4px);}
+.conn-badge.connected{background:rgba(46,125,50,0.85);color:#ffffff;border-color:#66bb6a;}
+.conn-badge.error{background:rgba(198,40,40,0.85);color:#ffffff;border-color:#ef9a9a;}
 
 /* Cards */
-.card{background:var(--card);border-radius:14px;padding:16px;margin-bottom:10px;
-  border:1px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,0.4);}
-.card-title{font-family:'Orbitron',monospace;font-size:10px;color:var(--teal);text-transform:uppercase;
-  margin-bottom:14px;font-weight:700;letter-spacing:2px;border-left:3px solid var(--orange);padding-left:10px;}
+.card{background:var(--card);border-radius:16px;padding:18px;margin-bottom:12px;
+  border:1.5px solid #e0f2f1;box-shadow:0 3px 16px rgba(0,0,0,0.07);}
+.card-title{font-family:'Orbitron',monospace;font-size:10px;color:#00838f;text-transform:uppercase;
+  margin-bottom:16px;font-weight:700;letter-spacing:2px;border-left:3px solid var(--orange);padding-left:10px;}
 
 /* Inputs */
 .conn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
 @media(max-width:420px){.conn-row{grid-template-columns:1fr;}}
-.lbl{font-size:10px;color:var(--teal);font-weight:700;margin-bottom:5px;letter-spacing:1px;text-transform:uppercase;}
-.conn-input{width:100%;padding:11px;border:1px solid var(--border);border-radius:8px;font-size:14px;
-  background:#0d1b2a;color:var(--text);font-weight:500;font-family:'Exo 2',sans-serif;}
-.conn-input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 8px rgba(0,172,193,0.3);}
-.connect-btn{width:100%;padding:12px;background:linear-gradient(135deg,var(--teal2),var(--teal));
-  color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;
-  font-family:'Orbitron',monospace;letter-spacing:1px;}
-.message-input{width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;font-size:15px;
-  margin-bottom:10px;background:#0d1b2a;color:var(--text);font-weight:500;font-family:'Exo 2',sans-serif;}
-.message-input:focus{outline:none;border-color:var(--teal);}
+.lbl{font-size:10px;color:#0097a7;font-weight:700;margin-bottom:6px;letter-spacing:1px;text-transform:uppercase;}
+.conn-input{width:100%;padding:11px 13px;border:1.5px solid #b2dfdb;border-radius:10px;font-size:14px;
+  background:#f8fffe;color:var(--text);font-weight:500;font-family:'Exo 2',sans-serif;transition:border 0.2s;}
+.conn-input:focus{outline:none;border-color:#0097a7;box-shadow:0 0 0 3px rgba(0,151,167,0.12);}
+.connect-btn{width:100%;padding:13px;background:linear-gradient(135deg,#0097a7,#0288d1);
+  color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;
+  font-family:'Orbitron',monospace;letter-spacing:1px;box-shadow:0 3px 12px rgba(0,151,167,0.3);}
+.message-input{width:100%;padding:12px 14px;border:1.5px solid #b2dfdb;border-radius:10px;font-size:15px;
+  margin-bottom:10px;background:#f8fffe;color:var(--text);font-weight:500;font-family:'Exo 2',sans-serif;}
+.message-input:focus{outline:none;border-color:#0097a7;box-shadow:0 0 0 3px rgba(0,151,167,0.12);}
 
 /* Buttons */
-.send-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--orange),var(--orange2));
-  color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;
-  margin-bottom:6px;font-family:'Orbitron',monospace;letter-spacing:1px;}
-.disp-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--blue),#1976d2);
-  color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;
-  font-family:'Orbitron',monospace;letter-spacing:1px;}
+.send-btn{width:100%;padding:13px;background:linear-gradient(135deg,#f57c00,#ff9800);
+  color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;
+  margin-bottom:8px;font-family:'Orbitron',monospace;letter-spacing:1px;
+  box-shadow:0 3px 12px rgba(245,124,0,0.28);}
+.disp-btn{width:100%;padding:13px;background:linear-gradient(135deg,#1565c0,#1976d2);
+  color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;
+  font-family:'Orbitron',monospace;letter-spacing:1px;box-shadow:0 3px 12px rgba(21,101,192,0.28);}
 
 /* Voice/AI */
-.voice-row{display:flex;gap:10px;align-items:center;margin-bottom:12px;}
-.mic-btn{flex-shrink:0;width:60px;height:60px;border-radius:50%;border:2px solid var(--teal);
-  background:#0d1b2a;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  transition:all 0.2s;position:relative;}
-.mic-btn.listening{background:rgba(255,111,0,0.2);border-color:var(--orange);animation:pulse 0.8s infinite;}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,111,0,0.4);}50%{box-shadow:0 0 0 14px rgba(255,111,0,0);}}
-.mic-transcript{flex:1;padding:12px;border:1px solid var(--border);border-radius:8px;font-size:14px;
-  background:#0d1b2a;color:var(--text);min-height:46px;line-height:1.4;}
-.ai-response-box{background:#0d1b2a;border:1px solid var(--teal);border-radius:8px;padding:14px;
-  min-height:64px;font-size:14px;color:#b2ebf2;font-weight:500;margin-bottom:10px;line-height:1.6;
-  box-shadow:0 0 12px rgba(0,172,193,0.1);}
-.ai-send-btn{width:100%;padding:12px;background:linear-gradient(135deg,var(--purple),#8e24aa);
-  color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;
-  font-family:'Orbitron',monospace;letter-spacing:1px;}
+.voice-row{display:flex;gap:12px;align-items:center;margin-bottom:14px;}
+.mic-btn{flex-shrink:0;width:62px;height:62px;border-radius:50%;border:2.5px solid #0097a7;
+  background:#e0f7fa;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s;box-shadow:0 2px 10px rgba(0,151,167,0.18);}
+.mic-btn.listening{background:#fff3e0;border-color:#f57c00;animation:pulse 0.8s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(245,124,0,0.3);}50%{box-shadow:0 0 0 14px rgba(245,124,0,0);}}
+.mic-transcript{flex:1;padding:12px 14px;border:1.5px solid #b2dfdb;border-radius:10px;font-size:14px;
+  background:#f8fffe;color:var(--text);min-height:48px;line-height:1.5;}
+.ai-response-box{background:linear-gradient(135deg,#e0f7fa,#e8f5e9);border:1.5px solid #80cbc4;border-radius:10px;padding:14px 16px;
+  min-height:66px;font-size:14px;color:#004d40;font-weight:500;margin-bottom:10px;line-height:1.7;}
+.ai-send-btn{width:100%;padding:13px;background:linear-gradient(135deg,#6a1b9a,#8e24aa);
+  color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;
+  font-family:'Orbitron',monospace;letter-spacing:1px;box-shadow:0 3px 12px rgba(106,27,154,0.28);}
 .ai-send-btn:disabled{opacity:0.4;cursor:not-allowed;}
 
 /* Response tag badges */
-.resp-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
-.tag{padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;
-  text-transform:uppercase;border:1px solid;}
-.tag-servo{color:#ff6f00;border-color:#ff6f00;background:rgba(255,111,0,0.1);}
-.tag-motor{color:#00acc1;border-color:#00acc1;background:rgba(0,172,193,0.1);}
-.tag-action{color:#8e24aa;border-color:#8e24aa;background:rgba(142,36,170,0.1);}
-.tag-buzzer{color:#ffa000;border-color:#ffa000;background:rgba(255,160,0,0.1);}
-.tag-qa{color:#4caf50;border-color:#4caf50;background:rgba(76,175,80,0.1);}
+.resp-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.tag{padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border:1.5px solid;}
+.tag-servo{color:#e65100;border-color:#ff8f00;background:#fff8e1;}
+.tag-motor{color:#006064;border-color:#0097a7;background:#e0f7fa;}
+.tag-action{color:#4a148c;border-color:#7b1fa2;background:#f3e5f5;}
+.tag-buzzer{color:#e65100;border-color:#fb8c00;background:#fff3e0;}
+.tag-qa{color:#1b5e20;border-color:#43a047;background:#e8f5e9;}
 
 /* Talk to Robot */
-.resp-box{background:#0d1b2a;border:1px solid var(--border);border-radius:8px;padding:14px;
-  min-height:60px;font-size:14px;color:#b2ebf2;line-height:1.6;margin-bottom:10px;}
-.speak-btn{width:100%;padding:10px;background:linear-gradient(135deg,var(--green),#43a047);
-  color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;
+.resp-box{background:linear-gradient(135deg,#e3f2fd,#e8f5e9);border:1.5px solid #90caf9;border-radius:10px;padding:14px 16px;
+  min-height:62px;font-size:14px;color:#0d47a1;line-height:1.7;margin-bottom:10px;}
+.speak-btn{width:100%;padding:10px;background:linear-gradient(135deg,#2e7d32,#43a047);
+  color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;
   font-family:'Orbitron',monospace;letter-spacing:1px;}
 
 /* Camera */
-#camContainer{position:relative;width:100%;height:180px;background:#000;border-radius:10px;
-  overflow:hidden;border:1px solid var(--border);margin-bottom:10px;}
+#camContainer{position:relative;width:100%;height:185px;background:#e0f2f1;border-radius:12px;
+  overflow:hidden;border:1.5px solid #b2dfdb;margin-bottom:10px;}
 #camPreview,#camCanvas{width:100%;height:100%;object-fit:cover;}
-.cam-btn-row{display:flex;gap:8px;margin-bottom:8px;}
-.cam-btn{flex:1;padding:10px;border:1px solid var(--border);border-radius:8px;background:#0d1b2a;
-  color:var(--teal);font-size:11px;font-weight:700;cursor:pointer;}
-.cam-btn:hover{background:var(--card2);}
-.cam-btn.active{background:rgba(0,172,193,0.2);border-color:var(--teal);}
+.cam-btn-row{display:flex;gap:8px;margin-bottom:10px;}
+.cam-btn{flex:1;padding:10px;border:1.5px solid #b2dfdb;border-radius:9px;background:#f0fafa;
+  color:#0097a7;font-size:11px;font-weight:700;cursor:pointer;transition:background 0.15s;}
+.cam-btn:hover{background:#b2ebf2;}
+.cam-btn.active{background:#e0f7fa;border-color:#0097a7;}
 
 /* Log */
-.log-box{background:#060a12;border:1px solid var(--border);border-radius:8px;padding:10px;
-  height:110px;overflow-y:auto;font-family:monospace;font-size:11px;color:#546e7a;}
-.log-box div{border-bottom:1px solid rgba(255,255,255,0.03);padding:2px 0;}
+.log-box{background:#f8fffe;border:1.5px solid #b2dfdb;border-radius:10px;padding:10px;
+  height:115px;overflow-y:auto;font-family:monospace;font-size:11px;color:#455a64;}
+.log-box div{border-bottom:1px solid rgba(0,150,136,0.08);padding:2px 0;}
 
 /* Joystick */
-.joystick-container{display:flex;flex-direction:column;align-items:center;padding:8px 0;}
-#joystick{width:190px;height:190px;background:radial-gradient(circle,#0d1b2a,#060a12);border-radius:50%;
-  position:relative;touch-action:none;border:2px solid var(--teal);
-  box-shadow:0 0 20px rgba(0,172,193,0.2),inset 0 0 40px rgba(0,0,0,0.5);margin:0 auto;}
-#stick{width:62px;height:62px;background:linear-gradient(135deg,var(--orange),var(--orange2));border-radius:50%;
-  position:absolute;box-shadow:0 4px 16px rgba(255,111,0,0.5);cursor:grab;border:2px solid rgba(255,255,255,0.2);}
+.joystick-container{display:flex;flex-direction:column;align-items:center;padding:10px 0;}
+#joystick{width:190px;height:190px;background:radial-gradient(circle,#e0f7fa,#b2ebf2);border-radius:50%;
+  position:relative;touch-action:none;border:2.5px solid #0097a7;
+  box-shadow:0 4px 20px rgba(0,151,167,0.18),inset 0 0 40px rgba(255,255,255,0.6);margin:0 auto;}
+#stick{width:62px;height:62px;background:linear-gradient(135deg,#f57c00,#ff9800);border-radius:50%;
+  position:absolute;box-shadow:0 4px 16px rgba(245,124,0,0.35);cursor:grab;border:2px solid rgba(255,255,255,0.7);}
 
 /* Servo */
-.servo-card{background:#0d1b2a;padding:12px;border-radius:8px;border:1px solid var(--border);margin-bottom:10px;}
-.servo-label{font-size:10px;color:var(--teal);text-transform:uppercase;margin-bottom:6px;font-weight:700;
+.servo-card{background:#f0fafa;padding:14px;border-radius:10px;border:1.5px solid #b2dfdb;margin-bottom:10px;}
+.servo-label{font-size:10px;color:#0097a7;text-transform:uppercase;margin-bottom:6px;font-weight:700;
   text-align:center;letter-spacing:1px;}
-.servo-value{font-size:22px;font-weight:900;color:var(--orange);margin:6px 0;text-align:center;
+.servo-value{font-size:24px;font-weight:900;color:#f57c00;margin:6px 0;text-align:center;
   font-family:'Orbitron',monospace;}
-.servo-btns{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:8px;}
-.servo-btn{padding:9px 4px;background:linear-gradient(135deg,var(--teal2),var(--teal));border:none;
-  border-radius:6px;font-size:11px;cursor:pointer;font-weight:700;color:#fff;}
+.servo-btns{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-top:8px;}
+.servo-btn{padding:10px 4px;background:linear-gradient(135deg,#0097a7,#0288d1);border:none;
+  border-radius:7px;font-size:11px;cursor:pointer;font-weight:700;color:#fff;
+  box-shadow:0 2px 6px rgba(0,151,167,0.2);}
 .hand-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.hand-section{background:#0d1b2a;padding:12px;border-radius:8px;border:1px solid var(--border);}
-.hand-title{text-align:center;font-size:12px;color:var(--orange);font-weight:800;margin-bottom:10px;
+.hand-section{background:#f0fafa;padding:14px;border-radius:10px;border:1.5px solid #b2dfdb;}
+.hand-title{text-align:center;font-size:12px;color:#f57c00;font-weight:800;margin-bottom:10px;
   text-transform:uppercase;font-family:'Orbitron',monospace;letter-spacing:1px;}
 
 /* Actions */
-.action-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px;}
+.action-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:10px;}
 @media(max-width:360px){.action-grid{grid-template-columns:1fr;}}
-.action-btn{padding:14px;color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;
+.action-btn{padding:14px;color:#fff;border:none;border-radius:11px;font-size:13px;font-weight:700;
   cursor:pointer;font-family:'Orbitron',monospace;letter-spacing:0.5px;
-  background:linear-gradient(135deg,var(--orange),var(--orange2));
-  box-shadow:0 2px 10px rgba(0,0,0,0.3);}
-.action-btn.blue{background:linear-gradient(135deg,var(--blue),#1976d2);}
-.action-btn.green{background:linear-gradient(135deg,var(--green),#43a047);}
-.action-btn.purple{background:linear-gradient(135deg,var(--purple),#8e24aa);}
-.action-btn.red{background:linear-gradient(135deg,var(--red),#e53935);}
+  background:linear-gradient(135deg,#f57c00,#ff9800);box-shadow:0 3px 10px rgba(0,0,0,0.12);}
+.action-btn.blue{background:linear-gradient(135deg,#1565c0,#1976d2);}
+.action-btn.green{background:linear-gradient(135deg,#2e7d32,#43a047);}
+.action-btn.purple{background:linear-gradient(135deg,#6a1b9a,#8e24aa);}
+.action-btn.red{background:linear-gradient(135deg,#c62828,#e53935);}
 .action-btn.teal{background:linear-gradient(135deg,#00695c,#00897b);}
 .action-btn.pink{background:linear-gradient(135deg,#880e4f,#c2185b);}
 
 /* Emoji */
-.emoji-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:4px;}
+.emoji-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:4px;}
 @media(max-width:360px){.emoji-grid{grid-template-columns:repeat(3,1fr);}}
-.emoji-btn{padding:10px 4px;border:1px solid var(--border);border-radius:8px;font-size:12px;
-  font-weight:700;cursor:pointer;background:#0d1b2a;color:var(--teal);}
-.emoji-btn.active{border-color:var(--orange);background:rgba(255,111,0,0.1);color:var(--orange);}
-.emoji-auto{width:100%;padding:11px;background:linear-gradient(135deg,#00695c,#00897b);color:#fff;
-  border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;margin-top:8px;
+.emoji-btn{padding:10px 4px;border:1.5px solid #b2dfdb;border-radius:9px;font-size:12px;
+  font-weight:700;cursor:pointer;background:#f8fffe;color:#0097a7;transition:all 0.15s;}
+.emoji-btn.active{border-color:#f57c00;background:#fff8e1;color:#f57c00;}
+.emoji-auto{width:100%;padding:12px;background:linear-gradient(135deg,#00695c,#0097a7);color:#fff;
+  border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;margin-top:9px;
   font-family:'Orbitron',monospace;letter-spacing:1px;}
 
 /* Status */
-.status-display{background:linear-gradient(135deg,#0d1b2a,var(--card2));padding:18px;border-radius:10px;
-  text-align:center;color:var(--teal);font-size:18px;font-weight:900;border:1px solid var(--teal);
-  font-family:'Orbitron',monospace;letter-spacing:2px;
-  text-shadow:0 0 10px rgba(0,172,193,0.5);}
+.status-display{background:linear-gradient(135deg,#e0f7fa,#e3f2fd);padding:20px;border-radius:12px;
+  text-align:center;color:#006064;font-size:20px;font-weight:900;border:2px solid #80cbc4;
+  font-family:'Orbitron',monospace;letter-spacing:3px;}
 
 /* Modals */
 .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;
-  background:rgba(0,0,0,0.8);z-index:999;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
+  background:rgba(0,0,0,0.45);z-index:999;align-items:center;justify-content:center;backdrop-filter:blur(6px);}
 .modal.show{display:flex;}
-.modal-box{background:var(--card);border-radius:16px;padding:20px;width:90%;max-width:380px;
-  box-shadow:0 8px 40px rgba(0,0,0,0.6);border:1px solid var(--teal);}
-.modal-title{font-family:'Orbitron',monospace;font-size:14px;font-weight:900;color:var(--teal);
-  margin-bottom:14px;text-align:center;border-bottom:1px solid var(--border);padding-bottom:12px;
-  letter-spacing:2px;}
-.song-btn{width:100%;padding:13px;margin-bottom:8px;color:#fff;border:none;border-radius:8px;
+.modal-box{background:#ffffff;border-radius:20px;padding:22px;width:90%;max-width:380px;
+  box-shadow:0 12px 48px rgba(0,0,0,0.18);border:1.5px solid #b2dfdb;}
+.modal-title{font-family:'Orbitron',monospace;font-size:14px;font-weight:900;color:#0097a7;
+  margin-bottom:16px;text-align:center;border-bottom:1.5px solid #e0f2f1;padding-bottom:14px;letter-spacing:2px;}
+.song-btn{width:100%;padding:14px;margin-bottom:9px;color:#fff;border:none;border-radius:10px;
   font-size:13px;font-weight:700;cursor:pointer;text-align:left;font-family:'Exo 2',sans-serif;}
-.song-btn:nth-child(2){background:linear-gradient(135deg,var(--purple),#8e24aa);}
-.song-btn:nth-child(3){background:linear-gradient(135deg,var(--blue),#1976d2);}
-.song-btn:nth-child(4){background:linear-gradient(135deg,var(--red),#e53935);}
-.song-btn:nth-child(5){background:linear-gradient(135deg,var(--orange),var(--orange2));}
+.song-btn:nth-child(2){background:linear-gradient(135deg,#6a1b9a,#8e24aa);}
+.song-btn:nth-child(3){background:linear-gradient(135deg,#1565c0,#1976d2);}
+.song-btn:nth-child(4){background:linear-gradient(135deg,#c62828,#e53935);}
+.song-btn:nth-child(5){background:linear-gradient(135deg,#f57c00,#ff9800);}
 .song-btn:nth-child(6){background:linear-gradient(135deg,#00695c,#00897b);}
-.close-btn{width:100%;padding:12px;margin-top:4px;background:#263238;color:#90a4ae;border:1px solid var(--border);
-  border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Exo 2',sans-serif;}
-.diff-btn{width:100%;padding:14px;margin-bottom:8px;border:none;border-radius:8px;font-size:14px;
+.close-btn{width:100%;padding:13px;margin-top:4px;background:#f5f5f5;color:#607d8b;border:1.5px solid #e0e0e0;
+  border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Exo 2',sans-serif;}
+.diff-btn{width:100%;padding:15px;margin-bottom:9px;border:none;border-radius:10px;font-size:14px;
   font-weight:700;cursor:pointer;color:#fff;font-family:'Exo 2',sans-serif;}
-.jump-btn{width:100%;padding:22px;background:linear-gradient(135deg,var(--orange),var(--orange2));
-  color:#fff;border:none;border-radius:12px;font-size:20px;font-weight:900;cursor:pointer;
-  font-family:'Orbitron',monospace;letter-spacing:2px;}
+.jump-btn{width:100%;padding:24px;background:linear-gradient(135deg,#f57c00,#ff9800);
+  color:#fff;border:none;border-radius:14px;font-size:22px;font-weight:900;cursor:pointer;
+  font-family:'Orbitron',monospace;letter-spacing:2px;box-shadow:0 4px 16px rgba(245,124,0,0.3);}
 
 /* Voice hint pills */
-.voice-hints{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;}
-.hint-pill{padding:4px 10px;border:1px solid var(--border);border-radius:20px;font-size:10px;
-  color:var(--muted);background:#0d1b2a;cursor:pointer;}
-.hint-pill:hover{border-color:var(--teal);color:var(--teal);}
+.voice-hints{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+.hint-pill{padding:5px 12px;border:1.5px solid #b2dfdb;border-radius:20px;font-size:10px;
+  color:#607d8b;background:#f0fafa;cursor:pointer;transition:all 0.15s;}
+.hint-pill:hover{border-color:#0097a7;color:#0097a7;background:#e0f7fa;}
 
 /* Speaking indicator */
-.speaking-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--teal);
+.speaking-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#0097a7;
   margin-left:8px;animation:blink 0.6s infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.1;}}
+
+/* ── FOOTER ─────────────────────────────────────────────────────────── */
+.footer{
+  margin-top:24px;margin-bottom:8px;
+  padding:22px 18px 20px;
+  background:linear-gradient(135deg,#0097a7,#0288d1);
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 6px 24px rgba(0,151,167,0.22);
+  position:relative;
+  overflow:hidden;
+}
+.footer::before{
+  content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;
+  border-radius:50%;background:rgba(255,255,255,0.08);
+}
+.footer::after{
+  content:'';position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;
+  border-radius:50%;background:rgba(255,255,255,0.06);
+}
+.footer-logo{font-family:'Orbitron',monospace;font-size:18px;font-weight:900;color:#ffffff;
+  letter-spacing:3px;margin-bottom:6px;}
+.footer-heart{display:inline-block;color:#ff6b9d;font-size:18px;animation:heartbeat 1.2s ease-in-out infinite;}
+@keyframes heartbeat{0%,100%{transform:scale(1);}50%{transform:scale(1.25);}}
+.footer-tagline{font-size:13px;color:rgba(255,255,255,0.9);font-weight:600;margin-bottom:10px;letter-spacing:0.5px;}
+.footer-divider{width:40px;height:2px;background:rgba(255,255,255,0.3);margin:10px auto;border-radius:2px;}
+.footer-copy{font-size:11px;color:rgba(255,255,255,0.65);letter-spacing:0.5px;font-weight:500;}
+.footer-badges{display:flex;justify-content:center;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.footer-badge{padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;
+  background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.9);border:1px solid rgba(255,255,255,0.25);
+  letter-spacing:0.5px;font-family:'Orbitron',monospace;}
 </style>
 </head>
 <body>
-<div class="scanline"></div>
 <div class="container">
 
 <!-- Header -->
@@ -406,6 +438,34 @@ body{font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--text);paddi
   <div class="status-display" id="statusDisplay">READY</div>
 </div>
 
+<!-- ══ FOOTER ══ -->
+<div class="footer">
+  <div class="footer-logo">⚡ COGNOSPACE</div>
+  <div class="footer-tagline">Designed &amp; Developed with <span class="footer-heart">♥</span> by CognoSpace</div>
+  <div class="footer-divider"></div>
+  <div class="footer-copy">Experiential STEM Learning · Kondapur, Hyderabad, India</div>
+  <div class="footer-badges">
+    <span class="footer-badge">ROBOTICS</span>
+    <span class="footer-badge">AI</span>
+    <span class="footer-badge">STEM</span>
+    <span class="footer-badge">IoT</span>
+    <span class="footer-badge">ESP32</span>
+  </div>
+  <div class="footer-divider" style="margin-top:14px;"></div>
+  <div style="margin-top:10px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;">
+    <div style="text-align:center;">
+      <div style="font-size:13px;font-weight:700;color:#ffffff;font-family:'Orbitron',monospace;letter-spacing:1px;">Santosh Ballu</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.65);margin-top:2px;letter-spacing:0.5px;">Co-Founder · BITS Pilani Alumni</div>
+    </div>
+    <div style="width:1px;background:rgba(255,255,255,0.2);align-self:stretch;"></div>
+    <div style="text-align:center;">
+      <div style="font-size:13px;font-weight:700;color:#ffffff;font-family:'Orbitron',monospace;letter-spacing:1px;">Satish Garla</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.65);margin-top:2px;letter-spacing:0.5px;">Co-Founder · CognoSpace</div>
+    </div>
+  </div>
+  <div style="margin-top:14px;font-size:10px;color:rgba(255,255,255,0.45);letter-spacing:0.5px;">© 2025 CognoSpace · All Rights Reserved</div>
+</div>
+
 </div><!-- end .container -->
 
 <!-- Music Modal -->
@@ -423,8 +483,8 @@ body{font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--text);paddi
 <div class="modal" id="gameModal"><div class="modal-box">
   <div class="modal-title">◈ SELECT DIFFICULTY</div>
   <button class="diff-btn" style="background:linear-gradient(135deg,#2e7d32,#43a047)" onclick="startGame(1)">🟢 Easy — Relaxed Speed</button>
-  <button class="diff-btn" style="background:linear-gradient(135deg,#ff6f00,#ffa000)" onclick="startGame(2)">🟡 Medium — Normal Speed</button>
-  <button class="diff-btn" style="background:linear-gradient(135deg,#b71c1c,#e53935)" onclick="startGame(3)">🔴 Hard — Fast Speed</button>
+  <button class="diff-btn" style="background:linear-gradient(135deg,#f57c00,#ff9800)" onclick="startGame(2)">🟡 Medium — Normal Speed</button>
+  <button class="diff-btn" style="background:linear-gradient(135deg,#c62828,#e53935)" onclick="startGame(3)">🔴 Hard — Fast Speed</button>
   <button class="close-btn" onclick="closeGameModal()">Cancel</button>
 </div></div>
 
@@ -446,19 +506,14 @@ let activeEmoji = 0;
 let gameActive = false, scoreInterval = null;
 let chatHistory = [];
 let lastLocalReply = "";
-
-// Camera
 let camStream = null, isFrozen = false;
-
-// Voice
 let recognition = null, isListening = false;
 let lastTranscript = "";
 
 // ═══════════════════════════════════════════════════════════════════════
-//  TEXT-TO-SPEECH  (plays through phone/laptop speaker)
+//  TEXT-TO-SPEECH
 // ═══════════════════════════════════════════════════════════════════════
 let femaleVoice = null;
-
 function loadVoices() {
   const voices = window.speechSynthesis.getVoices();
   femaleVoice =
@@ -498,10 +553,7 @@ function speakLocal(text) {
   window.speechSynthesis.speak(u);
 }
 
-function speakAgain() {
-  if (lastLocalReply) speakLocal(lastLocalReply);
-}
-
+function speakAgain() { if (lastLocalReply) speakLocal(lastLocalReply); }
 function setMicText(text) {
   document.getElementById("micTranscript").innerText = text;
   lastTranscript = text;
@@ -512,10 +564,10 @@ function setMicText(text) {
 // ═══════════════════════════════════════════════════════════════════════
 function sysLog(msg, type = "info") {
   const el = document.getElementById("sysLog");
-  const colors = { info: "#546e7a", ok: "#00e676", err: "#ff5252", ai: "#00e5ff", warn: "#ffd740" };
-  const c = colors[type] || "#546e7a";
+  const colors = { info: "#607d8b", ok: "#2e7d32", err: "#c62828", ai: "#0097a7", warn: "#f57c00" };
+  const c = colors[type] || "#607d8b";
   const t = new Date().toLocaleTimeString().split(' ')[0];
-  el.innerHTML = `<div style="color:${c}"><span style="opacity:0.4">[${t}]</span> ${msg}</div>` + el.innerHTML;
+  el.innerHTML = `<div style="color:${c}"><span style="opacity:0.45">[${t}]</span> ${msg}</div>` + el.innerHTML;
 }
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -622,16 +674,12 @@ document.addEventListener("mousemove", e => { if (isDragging) { const r = joy.ge
 joy.addEventListener("touchmove", e => { e.preventDefault(); if (isDragging) { const r = joy.getBoundingClientRect(); moveStick(e.touches[0].clientX - r.left, e.touches[0].clientY - r.top); } }, { passive: false });
 
 // ═══════════════════════════════════════════════════════════════════════
-//  BUILT-IN Q&A KNOWLEDGE BASE  (all from CognoSpace QA Guide + training)
-//  Returns: { text, action, servo, buzzer, tags }
+//  BUILT-IN Q&A KNOWLEDGE BASE
 // ═══════════════════════════════════════════════════════════════════════
 function localKnowledgeBase(input) {
   const inp = input.toLowerCase().trim();
-
-  // Helper: check if any keyword exists in the input
   const has = (...words) => words.some(w => inp.includes(w));
 
-  // ── GREETINGS ───────────────────────────────────────────────────────
   if (has("good morning"))
     return { text: "Good morning! Let's learn about robotics and STEM together! I'm so excited to teach you today!", action: "greet", tags: ["action"] };
   if (has("good afternoon"))
@@ -640,26 +688,18 @@ function localKnowledgeBase(input) {
     return { text: "Good evening! Perfect time to learn about STEM and robotics with CognoSpace!", action: "greet", tags: ["action"] };
   if (has("hi", "hello", "hey", "hii", "hola"))
     return { text: "Hello! I'm your CognoSpace humanoid robot. Welcome! How can I help you learn STEM and robotics today?", action: "greet", tags: ["action"] };
-
-  // ── FAREWELLS ────────────────────────────────────────────────────────
   if (has("bye", "goodbye", "see you", "good night", "cya"))
     return { text: "Goodbye! Keep learning and exploring robotics! See you soon! CognoSpace believes in you!", action: "wave", tags: ["action"] };
-
-  // ── ABOUT ROBOT ──────────────────────────────────────────────────────
   if (has("who are you", "your name", "what are you", "introduce yourself", "tell me about yourself"))
     return { text: "I'm a humanoid robot designed by CognoSpace to teach STEM and robotics! I have servos, motors, an LCD, OLED eyes, and a buzzer. I was built by the CognoSpace R&D team to make learning fun!", action: "wave", tags: ["action"] };
   if (has("how are you", "are you okay", "how do you feel"))
     return { text: "I'm functioning perfectly! All my servo motors and sensors are working great! My ESP32 brain is happy and my OLED eyes are shining!", action: "nod", tags: ["action"] };
-
-  // ── COGNOSPACE ───────────────────────────────────────────────────────
   if (has("what is cognospace", "about cognospace", "tell me about cognospace", "cognospace"))
     return { text: "CognoSpace provides experiential learning with activity-based STEM education! We partner with schools across India to make science, technology, engineering, and mathematics fun and hands-on!", tags: ["qa"] };
-  if (has("founder", "santosh ballu", "who founded", "who created cognospace", "who built cognospace"))
-    return { text: "CognoSpace was founded by Santosh Ballu, a BITS Pilani alumni, with a vision to revolutionize STEM education in India through hands-on experiential learning!", tags: ["qa"] };
+  if (has("founder", "santosh ballu", "satish garla", "satish", "who founded", "who created cognospace", "who built cognospace", "co-founder", "cofounder"))
+    return { text: "CognoSpace was co-founded by Santosh Ballu (BITS Pilani alumni) and Satish Garla! Together they built a vision to revolutionize STEM education in India through hands-on experiential learning!", tags: ["qa"] };
   if (has("where is cognospace", "location", "address", "where are you from", "where is the company"))
     return { text: "CognoSpace is located in Kondapur, Hyderabad! We partner with schools across India to deliver our STEM education programs!", tags: ["qa"] };
-
-  // ── STEM TOPICS ──────────────────────────────────────────────────────
   if (has("what is stem", "explain stem", "define stem"))
     return { text: "STEM stands for Science, Technology, Engineering, and Mathematics! It's an integrated approach to learning that prepares students for the future! CognoSpace makes STEM hands-on and exciting!", tags: ["qa"] };
   if (has("what is robotics", "explain robotics", "define robotics", "robotics"))
@@ -680,10 +720,8 @@ function localKnowledgeBase(input) {
     return { text: "Sensors help robots see, hear, and feel their environment just like humans do! Ultrasonic sensors detect distance, IR sensors detect obstacles, and cameras provide vision. I have multiple sensors onboard!", tags: ["qa"] };
   if (has("career", "job", "future", "profession", "scope"))
     return { text: "Robotics opens doors to amazing careers like AI engineer, robot designer, automation specialist, drone pilot, and IoT developer! STEM skills are the most in-demand skills of the 21st century!", tags: ["qa"] };
-
-  // ── ANATOMY / COMPONENTS ─────────────────────────────────────────────
   if (has("anatomy", "component", "parts", "made of", "inside you", "your body", "hardware", "built"))
-    return { text: "I have 10 main hardware parts: 1. ESP32 brain, 2. Motor Driver, 3. 60RPM Motors, 4. MG995 Servos, 5. LCD Display, 6. OLED Eyes, 7. Buzzer, 8. Battery, 9. Wheels, and 10. Chassis. Want me to also explain each one in detail?", action: "anatomy", tags: ["action", "qa"] };
+    return { text: "I have 10 main hardware parts: 1. ESP32 brain, 2. Motor Driver, 3. 60RPM Motors, 4. MG995 Servos, 5. LCD Display, 6. OLED Eyes, 7. Buzzer, 8. Battery, 9. Wheels, and 10. Chassis.", action: "anatomy", tags: ["action", "qa"] };
   if (has("esp32", "brain", "wifi chip", "microchip"))
     return { text: "The ESP32 is my brain! It was programmed by the CognoSpace R&D team. It has built-in WiFi and Bluetooth, runs at 240MHz, and controls everything — from my motors to my OLED eyes!", tags: ["qa"] };
   if (has("motor driver", "l298", "h bridge"))
@@ -702,8 +740,6 @@ function localKnowledgeBase(input) {
     return { text: "My wheels are like my feet! They're driven by 60RPM DC motors through the motor driver. They let me move forward, backward, left, and right!", tags: ["qa"] };
   if (has("chassis", "body", "frame", "skeleton", "structure"))
     return { text: "My chassis is my skeleton! It holds all my components together — motors, servos, batteries, and circuit boards. It's the backbone that gives me my humanoid shape!", tags: ["qa"] };
-
-  // ── ACTIONS / ENTERTAINMENT ──────────────────────────────────────────
   if (has("dance", "groove", "boogie"))
     return { text: "Yes! I love to dance! Watch me show some cool moves with my arms and body!", action: "dance", tags: ["action"] };
   if (has("wave", "wave hand", "say hello"))
@@ -718,8 +754,6 @@ function localKnowledgeBase(input) {
     return { text: "Hmm... let me think about that! 🤔", action: "think", tags: ["action"] };
   if (has("greet", "greeting", "welcome"))
     return { text: "Welcome to CognoSpace! Let me greet you properly!", action: "greet", tags: ["action"] };
-
-  // ── SERVO-SPECIFIC VOICE COMMANDS ───────────────────────────────────
   if (has("raise right hand", "lift right hand", "right hand up", "right arm up"))
     return { text: "Raising my right arm for you!", servo: { name: "rh1", pos: 0 }, tags: ["servo"] };
   if (has("lower right hand", "right hand down", "right arm down"))
@@ -738,8 +772,6 @@ function localKnowledgeBase(input) {
     return { text: "Raising both my arms up!", servo: "both_up", tags: ["servo"] };
   if (has("both hands down", "lower both hands", "hands down"))
     return { text: "Lowering both my arms!", servo: "both_down", tags: ["servo"] };
-
-  // ── MUSIC VOICE ──────────────────────────────────────────────────────
   if (has("play pacman", "pacman", "airtel tone"))
     return { text: "Playing Pacman theme on my buzzer! 🎮", music: 1, tags: ["buzzer"] };
   if (has("play mario", "mario", "docomo"))
@@ -752,22 +784,14 @@ function localKnowledgeBase(input) {
     return { text: "Drift time! Playing Tokyo Drift theme! 🚗", music: 5, tags: ["buzzer"] };
   if (has("play song", "play music", "music"))
     return { text: "I can play Pacman, Mario, Game of Thrones, Subway Surfers, or Tokyo Drift! Which one would you like? 🎵", tags: ["buzzer"] };
-
-  // ── JOKES & FUN ──────────────────────────────────────────────────────
   if (has("joke", "funny", "laugh", "tell me a joke", "make me laugh"))
     return { text: "Why did the robot go to school? To improve its AI! Haha! 😄 Here's another: Why do robots make great employees? Because they never crash... unless you reboot them wrong!", action: "clap", tags: ["action"] };
   if (has("thank", "thanks", "thank you", "thx", "appreciate"))
     return { text: "You're welcome! Happy to help you learn and explore robotics! That's what I'm here for!", action: "nod", tags: ["action"] };
-
-  // ── RESET ────────────────────────────────────────────────────────────
   if (has("reset", "restart", "stop everything", "reset all"))
     return { text: "Resetting all my systems! Back to ready position.", action: "reset", tags: ["action"] };
-
-  // ── FEATURES ────────────────────────────────────────────────────────
   if (has("what can you do", "your abilities", "your features", "capabilities"))
     return { text: "I can move forward, backward, left, and right! I can wave, dance, clap, nod, shake my head, grab and give objects, play music on my buzzer, show expressions on my OLED eyes, and answer STEM questions! I'm a complete learning companion!", tags: ["qa"] };
-
-  // ── DEFAULT ──────────────────────────────────────────────────────────
   return {
     text: "That's an interesting question! I'm trained to answer questions about CognoSpace, STEM, robotics, Arduino, Python, AI, IoT, 3D printing, drones, sensors, and careers. Try asking me about any of those topics! I'm also happy to wave, dance, clap, or play music!",
     tags: ["qa"]
@@ -775,61 +799,32 @@ function localKnowledgeBase(input) {
 }
 
 // ═══════════════════════════════════════════════════════════════════════
-//  LOCAL MESSAGE HANDLER  (Talk to Robot section)
+//  LOCAL MESSAGE HANDLER
 // ═══════════════════════════════════════════════════════════════════════
 async function sendMsg() {
   const m = document.getElementById("msg").value.trim();
   if (!m) return;
-
   const result = localKnowledgeBase(m);
   const replyText = result.text;
   lastLocalReply = replyText;
-
-  // Show in UI
   document.getElementById("localResp").innerText = replyText;
   document.getElementById("speakAgainBtn").style.display = "block";
-
-  // ── Speak through speaker ────────────────────────────────────────────
   speakLocal(replyText);
-
-  // ── Send to robot LCD ────────────────────────────────────────────────
-  if (robotBase) {
-    fetch(robotBase + "/api/message?text=" + encodeURIComponent(m)).catch(() => {});
-  }
-
-  // ── Execute action ───────────────────────────────────────────────────
+  if (robotBase) fetch(robotBase + "/api/message?text=" + encodeURIComponent(m)).catch(() => {});
   if (result.action) {
-    if (result.action === "anatomy") {
-      // Handled on robot side by /api/message
-    } else if (robotBase) {
-      setTimeout(() => {
-        fetch(robotBase + "/api/action?type=" + result.action).catch(() => {});
-      }, 600);
-    }
+    if (robotBase) setTimeout(() => fetch(robotBase + "/api/action?type=" + result.action).catch(() => {}), 600);
     sysLog("Local Q&A + action: " + result.action, "ok");
   }
-
-  // ── Execute servo command ────────────────────────────────────────────
   if (result.servo) {
-    if (result.servo === "both_up") {
-      setSv("rh1", 0); setSv("lh1", 180);
-    } else if (result.servo === "both_down") {
-      setSv("rh1", 90); setSv("lh1", 90);
-    } else {
-      setSv(result.servo.name, result.servo.pos);
-    }
+    if (result.servo === "both_up") { setSv("rh1", 0); setSv("lh1", 180); }
+    else if (result.servo === "both_down") { setSv("rh1", 90); setSv("lh1", 90); }
+    else { setSv(result.servo.name, result.servo.pos); }
     sysLog("Servo command: " + JSON.stringify(result.servo), "ok");
   }
-
-  // ── Trigger music ────────────────────────────────────────────────────
-  if (result.music && robotBase) {
-    setTimeout(() => playSong(result.music), 800);
-  }
-
+  if (result.music && robotBase) setTimeout(() => playSong(result.music), 800);
   document.getElementById("msg").value = "";
   sysLog("Q&A: " + m.substring(0, 40), "ok");
 }
-
 document.getElementById("msg").addEventListener("keypress", e => { if (e.key === "Enter") sendMsg(); });
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -982,70 +977,26 @@ async function analyzeVision(isCommand, customPrompt) {
 }
 
 // ═══════════════════════════════════════════════════════════════════════
-//  GEMINI AI — Enhanced with full servo/action/buzzer control
+//  GEMINI AI
 // ═══════════════════════════════════════════════════════════════════════
 const AI_MODEL = "gemini-2.5-flash-lite";
 
 async function callGemini(text, b64, includeHistory) {
   if (!geminiKey) throw new Error("No Gemini API key");
   const histBlock = (includeHistory && chatHistory.length) ? "HISTORY:\n" + chatHistory.join("\n") : "";
-
   const systemPrompt = `You are the AI brain of a CognoSpace humanoid robot built in Hyderabad, India.
 You control a physical robot with: movement motors, 5 servo motors (head, left shoulder L1, left elbow L2, right shoulder R1, right elbow R2), a buzzer, and an LCD display.
-
-=== RESPONSE RULES ===
-1. Keep responses SHORT (under 25 words) for the LCD display.
-2. ALWAYS include cmd, servos, action, and music fields in your JSON.
-3. For greetings/questions, respond warmly and educationally.
-4. Robot was built by CognoSpace — an experiential STEM learning company in Kondapur, Hyderabad. Founded by Santosh Ballu (BITS Pilani alumni).
-
-=== MOVEMENT DETECTION ===
-"go forward"/"move forward" → cmd: FORWARD
-"go back"/"reverse" → cmd: BACK
-"turn left"/"go left" → cmd: LEFT
-"turn right"/"go right" → cmd: RIGHT
-"stop"/"halt" → cmd: STOP
-No movement → cmd: NONE
-
-=== SERVO DETECTION ===
-"raise right hand"/"right arm up" → {rh1: 0}
-"lower right hand"/"right arm down" → {rh1: 90}
-"raise left hand"/"left arm up" → {lh1: 180}
-"lower left hand"/"left arm down" → {lh1: 90}
-"turn head left"/"look left" → {head: 30}
-"turn head right"/"look right" → {head: 150}
-"center head" → {head: 90}
-"both hands up" → {rh1: 0, lh1: 180}
-No servo change → servos: {}
-
-=== ACTION DETECTION ===
-"wave" → action: wave
-"dance"/"groove" → action: dance
-"clap"/"applaud" → action: clap
-"greet"/"welcome" → action: greet
-"nod"/"yes"/"agree" → action: nod
-"shake head"/"no"/"disagree" → action: shake
-"think"/"ponder" → action: think
-No action → action: none
-
-=== MUSIC DETECTION ===
-"pacman"/"airtel" → music: 1
-"mario"/"docomo" → music: 2
-"game of thrones"/"got" → music: 3
-"subway surfers" → music: 4
-"tokyo drift" → music: 5
-No music → music: 0
-
+Keep responses SHORT (under 25 words). ALWAYS include cmd, servos, action, and music fields.
+Robot was built by CognoSpace — an experiential STEM learning company in Kondapur, Hyderabad. Co-founded by Santosh Ballu (BITS Pilani alumni) and Satish Garla.
+"go forward" → cmd:FORWARD | "go back" → cmd:BACK | "turn left" → cmd:LEFT | "turn right" → cmd:RIGHT | "stop" → cmd:STOP | no movement → cmd:NONE
+"raise right hand" → {rh1:0} | "raise left hand" → {lh1:180} | "center head" → {head:90} | no servo → servos:{}
+"wave"→wave | "dance"→dance | "clap"→clap | "greet"→greet | "nod"→nod | "shake"→shake | no action→none
+"pacman"→music:1 | "mario"→music:2 | "got"→music:3 | "subway"→music:4 | "tokyo"→music:5 | none→music:0
 ${histBlock}
-
 USER: "${text}"
-
-Respond ONLY as valid JSON (no markdown):
-{"response":"short reply text","cmd":"FORWARD|BACK|LEFT|RIGHT|STOP|NONE","servos":{"head":90,"lh1":90,"lh2":180,"rh1":90,"rh2":180},"action":"wave|dance|clap|greet|nod|shake|think|reset|none","music":0}`;
-
+Respond ONLY as valid JSON: {"response":"short reply","cmd":"FORWARD|BACK|LEFT|RIGHT|STOP|NONE","servos":{"head":90,"lh1":90,"lh2":180,"rh1":90,"rh2":180},"action":"wave|dance|clap|greet|nod|shake|think|reset|none","music":0}`;
   const parts = [{ text: systemPrompt }];
   if (b64) parts.push({ inline_data: { mime_type: "image/jpeg", data: b64 } });
-
   const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${AI_MODEL}:generateContent?key=${geminiKey}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -1055,24 +1006,15 @@ Respond ONLY as valid JSON (no markdown):
   if (json.error) throw new Error(json.error.message);
   const raw = json.candidates[0].content.parts[0].text;
   const match = raw.match(/\{[\s\S]*\}/);
-  if (match) {
-    try {
-      return JSON.parse(match[0]);
-    } catch (e) {}
-  }
+  if (match) { try { return JSON.parse(match[0]); } catch (e) {} }
   return { response: raw, cmd: "NONE", servos: {}, action: "none", music: 0 };
 }
 
-// ─── Send to AI (Voice + AI Brain section) ────────────────────────────
 async function sendToAI() {
   const txt = lastTranscript || document.getElementById("micTranscript").innerText;
   if (!txt || txt.includes("Tap mic")) { sysLog("No voice input", "warn"); return; }
-
-  // First check local KB for instant answer
   const local = localKnowledgeBase(txt);
-
   if (!geminiKey) {
-    // Fully offline — use local KB
     document.getElementById("aiResponse").innerText = local.text;
     speak(local.text);
     showAITags(local.tags || []);
@@ -1080,10 +1022,8 @@ async function sendToAI() {
     executeLocalResult(local, txt);
     return;
   }
-
   const btn = document.getElementById("aiSendBtn");
   btn.disabled = true; btn.innerText = "Thinking...";
-
   try {
     const result = await callGemini(txt, null, true);
     const reply = typeof result === "string" ? result : (result.response || "...");
@@ -1091,16 +1031,12 @@ async function sendToAI() {
     const servos = (typeof result === "object" && result.servos) ? result.servos : {};
     const action = typeof result === "object" ? result.action : "none";
     const music = typeof result === "object" ? result.music : 0;
-
     document.getElementById("aiResponse").innerText = reply;
     speak(reply);
     sysLog("AI: " + reply, "ai");
-
     chatHistory.push("User: " + txt);
     chatHistory.push("AI: " + reply);
     if (chatHistory.length > 8) chatHistory = chatHistory.slice(-8);
-
-    // Show tags based on what's being executed
     const tags = [];
     if (cmd !== "NONE") tags.push("motor");
     if (Object.keys(servos).length > 0) tags.push("servo");
@@ -1108,31 +1044,20 @@ async function sendToAI() {
     if (music > 0) tags.push("buzzer");
     tags.push("qa");
     showAITags(tags);
-
-    // Send reply to robot LCD
     if (robotBase) fetch(robotBase + "/api/display?text=" + encodeURIComponent(reply)).catch(() => {});
-
-    // Unified single call to /api/voice — handles motor + servos + action + music
     voiceMove(cmd !== "NONE" ? cmd : "NONE", reply, servos, action !== "none" ? action : null, music > 0 ? music : 0);
-
   } catch (e) {
     sysLog("AI error: " + e.message + " — using built-in KB", "warn");
-    // Fallback to local KB on AI error
     document.getElementById("aiResponse").innerText = local.text;
     speak(local.text);
     showAITags(local.tags || []);
     executeLocalResult(local, txt);
   }
-
   btn.disabled = false; btn.innerText = "🚀 SEND TO AI BRAIN";
 }
 
 function executeLocalResult(result, originalText) {
-  if (result.action && robotBase) {
-    setTimeout(() => {
-      fetch(robotBase + "/api/action?type=" + result.action).catch(() => {});
-    }, 600);
-  }
+  if (result.action && robotBase) setTimeout(() => fetch(robotBase + "/api/action?type=" + result.action).catch(() => {}), 600);
   if (result.servo) {
     if (result.servo === "both_up") { setSv("rh1", 0); setSv("lh1", 180); }
     else if (result.servo === "both_down") { setSv("rh1", 90); setSv("lh1", 90); }
@@ -1154,7 +1079,6 @@ function showAITags(tags) {
   });
 }
 
-// ─── Unified voice command sender → /api/voice (motor+servo+action+music) ─
 function voiceMove(cmd, replyText, servoParams, actionParam, musicParam) {
   if (!robotBase) { sysLog("Robot not connected", "err"); return; }
   let url = robotBase + "/api/voice?cmd=" + (cmd || "NONE") + "&text=" + encodeURIComponent(replyText || "");
@@ -1172,10 +1096,9 @@ function voiceMove(cmd, replyText, servoParams, actionParam, musicParam) {
     .catch(e => sysLog("Voice error: " + e.message, "err"));
 }
 
-// ─── Detect movement (offline fallback) ──────────────────────────────
 function detectMovementIntent(text) {
   const t = text.toLowerCase();
-  if (t.includes("forward") || t.includes("go ahead") || t.includes("go front") || t.includes("straight")) return "FORWARD";
+  if (t.includes("forward") || t.includes("go ahead") || t.includes("straight")) return "FORWARD";
   if (t.includes("backward") || t.includes("go back") || t.includes("reverse")) return "BACK";
   if (t.includes("turn left") || t.includes("go left")) return "LEFT";
   if (t.includes("turn right") || t.includes("go right")) return "RIGHT";
@@ -1184,7 +1107,7 @@ function detectMovementIntent(text) {
 }
 
 // ═══════════════════════════════════════════════════════════════════════
-//  SPEECH RECOGNITION (Microphone)
+//  SPEECH RECOGNITION
 // ═══════════════════════════════════════════════════════════════════════
 function initSpeechRecognition() {
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -1193,14 +1116,12 @@ function initSpeechRecognition() {
   recognition.continuous = false;
   recognition.interimResults = true;
   recognition.lang = "en-US";
-
   recognition.onstart = () => {
     isListening = true;
     document.getElementById("micBtn").classList.add("listening");
     document.getElementById("micTranscript").innerText = "Listening...";
     sysLog("Mic listening...", "info");
   };
-
   recognition.onresult = (e) => {
     let interim = "", final = "";
     for (let i = e.resultIndex; i < e.results.length; i++) {
@@ -1211,16 +1132,12 @@ function initSpeechRecognition() {
     document.getElementById("micTranscript").innerText = display;
     if (final) { lastTranscript = final.trim(); sysLog("Heard: " + lastTranscript, "info"); }
   };
-
   recognition.onend = () => {
     isListening = false;
     document.getElementById("micBtn").classList.remove("listening");
     sysLog("Mic stopped — processing...", "info");
-    if (lastTranscript) {
-      sendToAI();
-    }
+    if (lastTranscript) sendToAI();
   };
-
   recognition.onerror = (e) => {
     isListening = false;
     document.getElementById("micBtn").classList.remove("listening");
@@ -1231,12 +1148,8 @@ function initSpeechRecognition() {
 function toggleMic() {
   if (!recognition) initSpeechRecognition();
   if (!recognition) { sysLog("Speech recognition unavailable", "err"); return; }
-  if (isListening) {
-    recognition.stop();
-  } else {
-    lastTranscript = "";
-    recognition.start();
-  }
+  if (isListening) { recognition.stop(); }
+  else { lastTranscript = ""; recognition.start(); }
 }
 
 // ═══════════════════════════════════════════════════════════════════════
